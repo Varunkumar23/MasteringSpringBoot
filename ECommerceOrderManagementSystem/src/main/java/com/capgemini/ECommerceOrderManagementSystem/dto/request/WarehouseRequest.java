@@ -17,6 +17,5 @@ public class WarehouseRequest {
     @Size(min = 3, max = 50)
     private String location;
 
-    @Positive
-    private int capacity;
+    private Integer capacity;
 }

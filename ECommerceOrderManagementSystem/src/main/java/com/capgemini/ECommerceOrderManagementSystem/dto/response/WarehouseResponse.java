@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 public class WarehouseResponse {
 
-    private Long id;
+    private int id;
     private String name;
     private String location;
     private int capacity;

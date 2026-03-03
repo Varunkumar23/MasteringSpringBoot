@@ -8,11 +8,11 @@ import java.util.List;
 public interface WarehouseService {
     WarehouseResponse createWarehouse(WarehouseRequest request);
 
-    WarehouseResponse getWarehouseById(Long id);
+    WarehouseResponse getWarehouseById(int id);
 
     List<WarehouseResponse> getAllWarehouses();
 
-    WarehouseResponse updateWarehouse(Long id, WarehouseRequest request);
+    WarehouseResponse updateWarehouse(int id, WarehouseRequest request);
 
-    void deleteWarehouse(Long id);
+    String deleteWarehouse(int id);
 }
