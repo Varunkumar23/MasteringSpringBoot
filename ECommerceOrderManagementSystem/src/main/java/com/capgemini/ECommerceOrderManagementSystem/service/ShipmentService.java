@@ -2,18 +2,20 @@ package com.capgemini.ECommerceOrderManagementSystem.service;
 
 import java.util.List;
 
+import com.capgemini.ECommerceOrderManagementSystem.dto.request.ShipmentRequest;
+import com.capgemini.ECommerceOrderManagementSystem.dto.response.ShipmentResponse;
 import com.capgemini.ECommerceOrderManagementSystem.entity.Shipment;
 
 public interface ShipmentService {
 
-	Shipment createShipment(Shipment shipment);
+	ShipmentResponse createShipment(ShipmentRequest shipmentRequest);
 
-	Shipment getShipmentById(int id);
+	ShipmentResponse getShipmentById(int id);
 
-	List<Shipment> getAllSgipments();
+	List<ShipmentResponse> getAllShipments();
 
-	Shipment updateShipment(int id, Shipment shipment);
+	ShipmentResponse updateShipment(int id, ShipmentRequest shipmentRequest);
 
-	void deleteShipment(int id);
+	String deleteShipment(int id);
 
 }

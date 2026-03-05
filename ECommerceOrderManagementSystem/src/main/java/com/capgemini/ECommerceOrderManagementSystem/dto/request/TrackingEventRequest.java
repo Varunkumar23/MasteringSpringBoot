@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
-public class CreateTrackingEventRequest {
+public class TrackingEventRequest {
     @NotNull
     @Positive
     private Long warehouseId;

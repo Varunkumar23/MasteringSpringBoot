@@ -35,7 +35,7 @@ public class Shipment {
 	private int id;
 
 	@Column(nullable = false)
-	private int trackingNumber;
+	private String trackingNumber;
 
 	@Column(nullable = false)
 	private String status;

@@ -1,7 +1,17 @@
 package com.capgemini.ECommerceOrderManagementSystem.dto.response;
 
+
+import lombok.*;
+
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+
+
 public class ShipmentResponse {
-    private Long id;
+    private int id;
     private String trackingNumber;
     private String status;
     private String customerEmail;
