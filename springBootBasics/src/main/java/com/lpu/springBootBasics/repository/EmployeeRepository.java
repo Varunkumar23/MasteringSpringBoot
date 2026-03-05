@@ -1,5 +1,6 @@
-package com.lpu.springBootBasics;
+package com.lpu.springBootBasics.repository;
 
+import com.lpu.springBootBasics.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.data.jpa.repository.Modifying;

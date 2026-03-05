@@ -1,5 +1,6 @@
-package com.lpu.springBootBasics;
+package com.lpu.springBootBasics.exception;
 
+import com.lpu.springBootBasics.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ApplicationException {
 
 	public ResponseEntity<ApiResponse> handleEmployeeNotFoundException(EmployeeNotFoundException ex,
-			HttpServletRequest request) {
+                                                                       HttpServletRequest request) {
 		ApiResponse response = new ApiResponse(HttpStatus.NOT_FOUND.value(), "Employee Not Found", ex.getMessage(),
 				request.getRequestURI());
 		return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);

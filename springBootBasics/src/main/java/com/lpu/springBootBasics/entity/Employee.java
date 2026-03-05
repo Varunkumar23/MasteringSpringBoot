@@ -1,4 +1,4 @@
-package com.lpu.springBootBasics;
+package com.lpu.springBootBasics.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

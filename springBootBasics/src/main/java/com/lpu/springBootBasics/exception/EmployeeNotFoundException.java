@@ -1,4 +1,4 @@
-package com.lpu.springBootBasics;
+package com.lpu.springBootBasics.exception;
 
 public class EmployeeNotFoundException extends RuntimeException{
 

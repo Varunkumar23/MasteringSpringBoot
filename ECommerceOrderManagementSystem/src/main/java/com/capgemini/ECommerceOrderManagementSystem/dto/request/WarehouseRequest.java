@@ -1,6 +1,5 @@
 package com.capgemini.ECommerceOrderManagementSystem.dto.request;
 
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
