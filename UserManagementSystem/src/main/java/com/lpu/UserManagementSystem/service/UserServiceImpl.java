@@ -8,6 +8,7 @@ import com.lpu.UserManagementSystem.exception.UserNotFoundException;
 import com.lpu.UserManagementSystem.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -59,8 +60,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void deleteUser(int id) {
-    userRepository.findById(id).orElseThrow(()->new UserNotFoundException("User not found with id: " + id));
-    userRepository.deleteById(id);
-        System.out.println("User Deleted Successfully!");
+
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
+
+        userRepository.delete(user);
     }
 }

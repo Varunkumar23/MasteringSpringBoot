@@ -26,7 +26,7 @@ public class UserController {
         ApiResponse<UserResponse> apiResponse =
                 new ApiResponse<>(true, "User creation successful!", response);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
+        return ResponseEntity.status(HttpStatus.CREATED.value()).body(apiResponse);
     }
 
     @GetMapping("/{id}")
@@ -53,5 +53,16 @@ public class UserController {
         ApiResponse<UserResponse> apiResponse = new ApiResponse<>(true, "User Updated Successfully!", response);
         return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
 
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<String>> deleteUser(@PathVariable int id) {
+
+        userService.deleteUser(id);
+
+        ApiResponse<String> response =
+                new ApiResponse<>(true, "User deleted successfully", null);
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
