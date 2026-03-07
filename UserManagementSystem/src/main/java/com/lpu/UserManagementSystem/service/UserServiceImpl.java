@@ -8,41 +8,39 @@ import com.lpu.UserManagementSystem.exception.UserNotFoundException;
 import com.lpu.UserManagementSystem.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
 
-
     @Override
     public UserResponse createUser(UserRequest request) {
 
-        if(userRepository.existsByEmail(request.getEmail())){
+        if (userRepository.existsByEmail(request.getEmail())) {
             throw new DuplicateUserException("User already exists with this mail!");
         }
-        User user= modelMapper.map(request,User.class);
-        User saved=userRepository.save(user);
-        return modelMapper.map(saved,UserResponse.class);
+        User user = modelMapper.map(request, User.class);
+        User saved = userRepository.save(user);
+        return modelMapper.map(saved, UserResponse.class);
     }
 
     @Override
     public UserResponse getUserById(int id) {
-        User user= userRepository.findById(id).orElseThrow(()->new UserNotFoundException("User not found with id: " + id));
-        return modelMapper.map(user,UserResponse.class);
+        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
+        return modelMapper.map(user, UserResponse.class);
 
     }
 
     @Override
     public List<UserResponse> getAllUsers() {
-        return userRepository.findAll().stream().map(user -> modelMapper.map(user,UserResponse.class)).toList();
+        return userRepository.findAll().stream().map(user -> modelMapper.map(user, UserResponse.class)).toList();
     }
 
     @Override
@@ -66,4 +64,31 @@ public class UserServiceImpl implements UserService{
 
         userRepository.delete(user);
     }
+
+    @Override
+    public UserResponse findByName(String name) {
+        User user = userRepository.findByName(name)
+                .orElseThrow(() -> new UserNotFoundException("User not found with the given name: "+name));
+
+        return modelMapper.map(user, UserResponse.class);
+    }
+
+    @Override
+    public UserResponse findByEmail(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException("User not found with the given email: "+email));
+
+        return modelMapper.map(user, UserResponse.class);
+    }
+
+    @Override
+    public List<UserResponse> getAllUsersByRole(String role) {
+        return userRepository.getUsersByRole(role).stream().map(user -> modelMapper.map(user,UserResponse.class)).toList();
+    }
+
+    public List<UserResponse> getUsersContainInName(String ch){
+        return userRepository.getUsersContainInName(ch).stream().map(user -> modelMapper.map(user,UserResponse.class)).toList();
+    }
+
+
 }
