@@ -2,7 +2,7 @@ package com.lpu.UserManagementSystem.service;
 
 import com.lpu.UserManagementSystem.dto.UserRequest;
 import com.lpu.UserManagementSystem.dto.UserResponse;
-import com.lpu.UserManagementSystem.entity.User;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public interface UserService {
 
     UserResponse getUserById(int id);
 
-    List<UserResponse> getAllUsers();
+    Page<UserResponse> getAllUsers(int page,int size,String sortBy);
 
     UserResponse updateUser(int id, UserRequest request);
 
@@ -25,4 +25,6 @@ public interface UserService {
     List<UserResponse> getAllUsersByRole(String role);
 
     List<UserResponse> getUsersContainInName(String ch);
+
+    List<UserResponse> fetchUsersBySorting(String field,String direction);
 }
