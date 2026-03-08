@@ -47,7 +47,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Page<UserResponse> getAllUsers(int page, int size, String sortBy) {
 //        return userRepository.findAll().stream().map(user -> modelMapper.map(user, UserResponse.class)).toList();
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC,sortBy));
+
         Page<User> userPage = userRepository.findAll(pageable);
         return userPage.map(user -> modelMapper.map(user, UserResponse.class));
 

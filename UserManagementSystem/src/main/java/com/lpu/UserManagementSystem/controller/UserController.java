@@ -4,6 +4,7 @@ import com.lpu.UserManagementSystem.dto.ApiResponse;
 import com.lpu.UserManagementSystem.dto.UserRequest;
 import com.lpu.UserManagementSystem.dto.UserResponse;
 import com.lpu.UserManagementSystem.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -22,7 +23,7 @@ public class UserController {
     private final ModelMapper modelMapper;
 
     @PostMapping
-    public ResponseEntity<ApiResponse<UserResponse>> createUser(@RequestBody UserRequest request) {
+    public ResponseEntity<ApiResponse<UserResponse>> createUser(@RequestBody @Valid UserRequest request) {
 
         UserResponse response = userService.createUser(request);
 
