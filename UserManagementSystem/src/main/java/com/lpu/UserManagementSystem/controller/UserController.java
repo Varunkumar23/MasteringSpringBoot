@@ -4,12 +4,14 @@ import com.lpu.UserManagementSystem.dto.ApiResponse;
 import com.lpu.UserManagementSystem.dto.UserRequest;
 import com.lpu.UserManagementSystem.dto.UserResponse;
 import com.lpu.UserManagementSystem.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +23,18 @@ public class UserController {
 
     private final UserService userService;
     private final ModelMapper modelMapper;
+
+    @GetMapping("/home")
+    public String greet(HttpServletRequest request) {
+        return "Welcome to the home page and your session id is: " + request.getSession().getId();
+    }
+
+    @GetMapping("/csrf-token")
+    public CsrfToken getCsrfToken(HttpServletRequest request) {
+        return (CsrfToken) request.getAttribute("_csrf");
+
+    }
+
 
     @PostMapping
     public ResponseEntity<ApiResponse<UserResponse>> createUser(@RequestBody @Valid UserRequest request) {

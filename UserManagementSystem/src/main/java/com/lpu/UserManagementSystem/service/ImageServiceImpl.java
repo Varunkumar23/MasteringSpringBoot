@@ -24,6 +24,7 @@ public class ImageServiceImpl implements ImageService {
         return "Image upload failed";
     }
 
+
     public byte[] downloadImage(String fileName) {
         Optional<Image> image = imageRepository.findByName(fileName);
         byte[] imageData = ImageUtil.decompressImage(image.get().getImageData());
